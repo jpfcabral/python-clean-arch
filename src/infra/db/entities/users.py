@@ -1,21 +1,17 @@
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.orm import relationship
-from src.infra.db.config import Base
+from typing import Optional
+from sqlmodel import Field
+from src.infra.db.config import SQLModel
 
 
-class Users(Base):
+class Users(SQLModel, table=True):
 
-    __tablename__ = "users"
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50), nullable=False)
-    email = Column(String(50), nullable=False)
-    password = Column(String(50), nullable=False)
-    created_at = Column(DateTime)
-    updated_at = Column(DateTime)
-    deleted_at = Column(DateTime)
-
-    id_pet = relationship("Pets")
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str = Field(default="")
+    email: str = Field(default="")
+    password: str = Field(default="")
+    created_at: Optional[str] = Field(default=None)
+    updated_at: Optional[str] = Field(default=None)
+    deleted_at: Optional[str] = Field(default=None)
 
     def __rep__(self):
         return f"User [name={self.name}, email={self.email}]"

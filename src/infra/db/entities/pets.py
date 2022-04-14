@@ -1,6 +1,8 @@
 import enum
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Enum
-from src.infra.db.config import Base
+from typing import Optional
+from sqlalchemy import Column, Enum
+from sqlmodel import Field
+from src.infra.db.config import SQLModel
 
 
 class AnimalType(enum.Enum):
@@ -10,19 +12,14 @@ class AnimalType(enum.Enum):
     OTHER = "other"
 
 
-class Pets(Base):
-
-    __tablename__ = "pets"
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50), nullable=False)
-    specie = Column(Enum(AnimalType), nullable=False)
-    age = Column(Integer, nullable=False)
-    created_at = Column(DateTime)
-    updated_at = Column(DateTime)
-    deleted_at = Column(DateTime)
-
-    user_id = Column(Integer, ForeignKey("users.id"))
+class Pets(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str = Field(default="")
+    specie: AnimalType = Field(sa_column=Column(Enum(AnimalType)))
+    age: int = Field(default=0)
+    created_at: Optional[str] = Field(default=None)
+    updated_at: Optional[str] = Field(default=None)
+    deleted_at: Optional[str] = Field(default=None)
 
     def __rep__(self):
         return f"Pets [name={self.name}, specie={self.specie}, age={self.age}]"

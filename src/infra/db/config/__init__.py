@@ -1,2 +1,2 @@
-from .base import Base
-from .configonfig import DBConnectionHandler
+from .base import SQLModel
+from .config import DBConnectionHandler
