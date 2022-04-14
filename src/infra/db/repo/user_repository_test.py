@@ -48,3 +48,5 @@ def test_select_user():
     assert user in query_user4
     assert user in query_user5
     assert user in query_user6
+
+    user_repository.delete_user_by_id(user_id=user.id)
