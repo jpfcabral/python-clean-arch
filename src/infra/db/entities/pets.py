@@ -16,7 +16,7 @@ class Pets(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
-    specie = Column(Enum(AnimalType()), nullable=False)
+    specie = Column(Enum(AnimalType), nullable=False)
     age = Column(Integer, nullable=False)
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
