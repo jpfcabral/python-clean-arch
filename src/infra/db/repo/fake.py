@@ -3,7 +3,7 @@ from src.infra.db.entities import Users
 
 
 class FakeRepo:
-    @classmethod()
+    @classmethod
     def insert_user(cls, name: str, email: str, password: str):
 
         with DBConnectionHandler() as db_connection:
