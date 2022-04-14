@@ -3,7 +3,7 @@ from sqlmodel import Field
 from src.domain.models.pets import PetBase
 
 
-class Pets(PetBase, table=True):
+class Pet(PetBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
 
     def __rep__(self):

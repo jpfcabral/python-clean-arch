@@ -3,7 +3,7 @@ from sqlmodel import Field
 from src.domain.models.users import UserBase
 
 
-class Users(UserBase, table=True):
+class User(UserBase, table=True):
 
     id: Optional[int] = Field(default=None, primary_key=True)
 

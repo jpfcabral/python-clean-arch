@@ -1,15 +1,15 @@
 from typing import List
 from src.infra.db.config import DBConnectionHandler
-from src.infra.db.entities import Users
+from src.infra.db.entities import User
 
 
 class UserRepository:
     @classmethod
-    def insert_user(cls, name: str, email: str, password: str) -> Users:
+    def insert_user(cls, name: str, email: str, password: str) -> User:
 
         with DBConnectionHandler() as db_connection:
             try:
-                user = Users(name=name, email=email, password=password)
+                user = User(name=name, email=email, password=password)
                 db_connection.session.add(user)
                 db_connection.session.commit()
                 db_connection.session.refresh(user)
@@ -22,13 +22,11 @@ class UserRepository:
         return None
 
     @classmethod
-    def get_user_by_id(cls, user_id: int) -> Users:
+    def get_user_by_id(cls, user_id: int) -> User:
         with DBConnectionHandler() as db_connection:
             try:
                 user = (
-                    db_connection.session.query(Users)
-                    .filter(Users.id == user_id)
-                    .first()
+                    db_connection.session.query(User).filter(User.id == user_id).first()
                 )
                 return user
             except:
@@ -43,9 +41,7 @@ class UserRepository:
         with DBConnectionHandler() as db_connection:
             try:
                 user = (
-                    db_connection.session.query(Users)
-                    .filter(Users.id == user_id)
-                    .first()
+                    db_connection.session.query(User).filter(User.id == user_id).first()
                 )
                 db_connection.session.delete(user)
                 db_connection.session.commit()
@@ -57,11 +53,11 @@ class UserRepository:
         return None
 
     @classmethod
-    def get_users_by_name(cls, name: str) -> List[Users]:
+    def get_users_by_name(cls, name: str) -> List[User]:
         with DBConnectionHandler() as db_connection:
             try:
                 users = (
-                    db_connection.session.query(Users).filter(Users.name == name).all()
+                    db_connection.session.query(User).filter(User.name == name).all()
                 )
                 return users
             except:
@@ -72,13 +68,11 @@ class UserRepository:
         return None
 
     @classmethod
-    def get_users_by_email(cls, email: str) -> List[Users]:
+    def get_users_by_email(cls, email: str) -> List[User]:
         with DBConnectionHandler() as db_connection:
             try:
                 users = (
-                    db_connection.session.query(Users)
-                    .filter(Users.email == email)
-                    .all()
+                    db_connection.session.query(User).filter(User.email == email).all()
                 )
                 return users
             except:
@@ -91,16 +85,16 @@ class UserRepository:
     @classmethod
     def select_user(
         cls, id: int = None, name: str = None, email: str = None
-    ) -> List[Users]:
+    ) -> List[User]:
         with DBConnectionHandler() as db_connection:
             try:
-                users = db_connection.session.query(Users)
+                users = db_connection.session.query(User)
                 if id:
-                    users = users.filter(Users.id == id)
+                    users = users.filter(User.id == id)
                 if name:
-                    users = users.filter(Users.name == name)
+                    users = users.filter(User.name == name)
                 if email:
-                    users = users.filter(Users.email == email)
+                    users = users.filter(User.email == email)
                 users = users.all()
                 return users
             except:
