@@ -1,9 +1,10 @@
 from typing import List
 from src.infra.db.config import DBConnectionHandler
 from src.infra.db.entities import User
+from src.data.interfaces import UserRepositoryInterface
 
 
-class UserRepository:
+class UserRepository(UserRepositoryInterface):
     @classmethod
     def insert_user(cls, name: str, email: str, password: str) -> User:
 

@@ -1,8 +1,9 @@
 from src.infra.db.config import DBConnectionHandler
 from src.infra.db.entities import Pet
+from src.data.interfaces import PetRepositoryInterface
 
 
-class PetRepository:
+class PetRepository(PetRepositoryInterface):
     @classmethod
     def insert_pet(cls, name: str, species: str) -> Pet:
 
