@@ -1,6 +1,6 @@
 from faker import Faker
 from src.infra.db.config import DBConnectionHandler
-from .user_repository import UserRepository
+from src.infra.db.repo.user_repository import UserRepository
 
 fake = Faker()
 user_repository = UserRepository()
