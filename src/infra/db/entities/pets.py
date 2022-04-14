@@ -12,7 +12,7 @@ class AnimalType(enum.Enum):
 
 class Pets(Base):
 
-    __table__name = "pets"
+    __tablename__ = "pets"
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)

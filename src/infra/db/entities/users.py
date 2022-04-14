@@ -3,9 +3,9 @@ from sqlalchemy.orm import relationship
 from src.infra.db.config import Base
 
 
-class User(Base):
+class Users(Base):
 
-    __table__name = "users"
+    __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
