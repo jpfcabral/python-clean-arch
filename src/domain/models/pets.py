@@ -1,7 +1,6 @@
 import enum
 from typing import Optional
 from sqlmodel import SQLModel, Field
-from sqlalchemy import Column, Enum
 
 
 class AnimalType(enum.Enum):
@@ -13,7 +12,7 @@ class AnimalType(enum.Enum):
 
 class PetBase(SQLModel):
     name: str = Field(default="")
-    specie: AnimalType = Field(sa_column=Column(Enum(AnimalType)))
+    specie: str
     age: int = Field(default=0)
     created_at: Optional[str] = Field(default=None)
     updated_at: Optional[str] = Field(default=None)
