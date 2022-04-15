@@ -17,3 +17,4 @@ class PetBase(SQLModel):
     created_at: Optional[str] = Field(default=None)
     updated_at: Optional[str] = Field(default=None)
     deleted_at: Optional[str] = Field(default=None)
+    user_id: Optional[int] = Field(default=None, foreign_key='user.id')

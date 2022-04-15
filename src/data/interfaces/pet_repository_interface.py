@@ -4,7 +4,7 @@ from src.domain.models import PetBase
 
 class PetRepositoryInterface(ABC):
     @abstractmethod
-    def insert_pet(self, name: str, species: str) -> PetBase:
+    def insert_pet(self, name: str, species: str, user_id: int) -> PetBase:
         raise NotImplementedError("Method not implemented")
 
     @abstractmethod

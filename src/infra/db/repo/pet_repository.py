@@ -5,11 +5,11 @@ from src.data.interfaces import PetRepositoryInterface
 
 class PetRepository(PetRepositoryInterface):
     @classmethod
-    def insert_pet(cls, name: str, species: str) -> Pet:
+    def insert_pet(cls, name: str, species: str, user_id: int) -> Pet:
 
         with DBConnectionHandler() as db_connection:
             try:
-                pet = Pet(name=name, species=species)
+                pet = Pet(name=name, species=species, user_id=user_id)
                 db_connection.session.add(pet)
                 db_connection.session.commit()
                 db_connection.session.refresh(pet)
